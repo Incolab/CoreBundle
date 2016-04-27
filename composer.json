@@ -1,0 +1,30 @@
+{
+    "name": "incolab/core-bundle",
+    "type": "symfony-bundle",
+    "description": "Services utils Symfony bundle needed by Incolab bundles",
+    "keywords": ["forum", "bundle"],
+    "homepage": "https://github.com/Incolab/CoreBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Salbei",
+            "email": "david@chalvia.fr"
+        },
+        {
+            "name": "Incolab Community",
+            "homepage": "http://incolab.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/framework-bundle": "~2.8|~3.0"
+    },
+    "autoload": {
+        "psr-4": { "Incolab\\CoreBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
