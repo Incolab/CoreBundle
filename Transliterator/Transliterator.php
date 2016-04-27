@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Transliterator;
+namespace Incolab\CoreBundle\Transliterator;
 
 /**
  * This is the part taken from Doctrine 1.2.3
@@ -25,8 +25,17 @@ namespace CoreBundle\Transliterator;
  * @author         Salbei david@chalvia.fr
  */
 
+use Symfony\Component\HttpKernel\Kernel;
+ 
 class Transliterator
-{ 
+{
+    private $bundlepath;
+    
+    public function __construct(Kernel $kernel)
+    {
+        $this->bundlepath = $kernel->getBundle("IncolabCoreBundle")->getPath();
+    }
+    
     /**
      * Checks whether a string has utf7 characters in it.
      *
@@ -337,6 +346,8 @@ class Transliterator
      * characters to - it uses a PHP output buffer to do this - it means, memory use will increase,
      * requiring up to the same amount again as the input string.
      *
+     * real: public static function utf8ToAscii($str, $unknown = '?')
+     *
      * @see http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm
      *
      * @author <hsivonen@iki.fi>
@@ -346,7 +357,8 @@ class Transliterator
      *
      * @return string US-ASCII string
      */
-    public static function utf8ToAscii($str, $unknown = '?')
+    
+    private function utf8ToAscii($str, $unknown = '?')
     {
         static $UTF8_TO_ASCII;
 
@@ -384,7 +396,7 @@ class Transliterator
             $bank = $ord >> 8;
 
             if (!array_key_exists($bank, (array) $UTF8_TO_ASCII)) {
-                $bankfile = __DIR__.'/data/'.sprintf('x%02x', $bank).'.php';
+                $bankfile = $this->bundlepath.'/Transliterator/data/'.sprintf('x%02x', $bank).'.php';
                 if (file_exists($bankfile)) {
                     include $bankfile;
                 } else {
