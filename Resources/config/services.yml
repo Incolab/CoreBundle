@@ -6,4 +6,5 @@ services:
         class: Incolab\CoreBundle\Transliterator\Transliterator
         arguments:
             kernel: "@kernel"
-    
+    incolab_core.bbcodeparser:
+        class: Incolab\CoreBundle\BBCodeParser\BBCodeParser
