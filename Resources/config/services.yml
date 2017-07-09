@@ -5,6 +5,9 @@ services:
     incolab_core.transliterator:
         class: Incolab\CoreBundle\Transliterator\Transliterator
         arguments:
-            kernel: "@kernel"
+            $kernel: "@kernel"
     incolab_core.bbcodeparser:
         class: Incolab\CoreBundle\BBCodeParser\BBCodeParser
+
+    incolab_core.json_utils:
+        class: Incolab\CoreBundle\JsonUtils\JsonUtils
