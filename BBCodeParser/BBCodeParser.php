@@ -175,11 +175,12 @@ class BBCodeParser {
      * @return string Parsed string
      */
     public function parse($source, $caseInsensitive = false) {
+        $safeSource = htmlspecialchars($source, ENT_QUOTES, "UTF-8");
         foreach ($this->enabledParsers as $name => $parser) {
             $pattern = ($caseInsensitive) ? $parser['pattern'] . 'i' : $parser['pattern'];
-            $source = $this->searchAndReplace($pattern, $parser['replace'], $source);
+            $safeSource = $this->searchAndReplace($pattern, $parser['replace'], $safeSource);
         }
-        return $source;
+        return $safeSource;
     }
     
     /**
