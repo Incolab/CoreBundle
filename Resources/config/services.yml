@@ -11,3 +11,5 @@ services:
 
     incolab_core.json_utils:
         class: Incolab\CoreBundle\JsonUtils\JsonUtils
+    incolab_core.pagination:
+        class: Incolab\CoreBundle\Pagination\Pagination
